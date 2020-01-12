@@ -1,5 +1,5 @@
 INC := -I./ext/tinytest
-override CXXFLAGS := -std=c++17 -Werror $(INC) $(CXXFLAGS)
+override CXXFLAGS := -g -std=c++17 -Werror $(INC) $(CXXFLAGS)
 CC = g++
 
 TT_OBJ := $(addprefix ext/tinytest/,tinytest.o)

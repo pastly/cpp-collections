@@ -28,6 +28,10 @@ namespace Collections {
     void Trie<T>::insert(Iter it, Iter end) {
         // No more items in the iter. So we are done and mark ourselves as existing.
         if (it == end) {
+            assert((
+                "End of value iter, but no self value. Was it empty, thus we're at the root?",
+                this->self.has_value()
+            ));
             this->have_self = true;
             return;
         }
@@ -59,7 +63,10 @@ namespace Collections {
             ss << prefix << this->self.value();
         }
         if (this->have_self) {
-            assert(this->self.has_value());
+            assert((
+                "Supposed to be impossible to have_self without a value in self.",
+                this->self.has_value()
+            ));
             vals.push_back(ss.str());
         }
         ss << join;
@@ -89,6 +96,18 @@ namespace Collections {
         return this->children.at(next).contains(++it, end);
     }
 
+    template <typename T>
+    void Trie<T>::clear(void) {
+        for (auto kv: this->children) {
+            kv.second.clear();
+        }
+        this->children.clear();
+        // setting have_self to false should not be necessary:
+        // - if we aren't the root, we're getting dropped so it doesn't matter
+        // - if we are the root, we aren't allowed to have a value in self
+        //this->have_self = false;
+    }
+
     vector<string> tokenize(string s, char delim) {
         size_t start;
         size_t end = 0;
@@ -100,22 +119,3 @@ namespace Collections {
         return out;
     }
 }
-
-/*
-#include <unistd.h>
-int main(int argc, char *argv[]) {
-    // Read file names from stdin, one per line, store them in the Trie, and then print them
-    auto trie = Trie<string>();
-    for (string line; std::getline(std::cin, line); ) {
-        auto parts = tokenize(line, '/');
-        trie.insert(parts.begin(), parts.end());
-    }
-    //for (auto v: trie.values("/")) {
-    ///    std::cout << v << std::endl;
-    //}
-    auto k1 = tokenize("./.git/refs/tags", '/');
-    std::cout << trie.contains(k1.begin(), k1.end()) << std::endl;
-    auto k2 = tokenize("./.git/reffs/tags", '/');
-    std::cout << trie.contains(k2.begin(), k2.end()) << std::endl;
-}
-*/

@@ -40,6 +40,8 @@ namespace Collections {
         // contained in the Trie
         template <typename Iter>
         bool contains(Iter, Iter);
+        // Remove all contents from the Trie
+        void clear(void);
         // Public constructor. Used to create root node with no self.
         Trie();
     };
