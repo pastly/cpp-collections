@@ -83,11 +83,30 @@ end:
     (void)0;
 }
 
+static void
+test_size(void *arg) {
+    auto t = Trie<int>();
+    std::vector<int> k1 = { 1 };
+    std::vector<int> k11 = { 1, 1, 1 };
+    std::vector<int> k2 = { 2 };
+    std::vector<int> k3 = { 3, 3, 3 };
+    std::vector<int> k33 = { 3, 3, 3, 3, 3 };
+    auto all_keys = { k1, k2, k3, k33, k11 };
+    tt_int_op(t.size(), ==, 0);
+    for (auto k: all_keys) {
+        t.insert(k.begin(), k.end());
+    }
+    tt_int_op(t.size(), ==, all_keys.size());
+end:
+    (void)0;
+}
+
 struct testcase_t trie_tests[] = {
     /* Name, function, flags, setup code, teardown code */
     { "empty", test_empty, 0, NULL, NULL },
     { "insert", test_insert, 0, NULL, NULL },
     { "clear", test_clear, 0, NULL, NULL },
+    { "size", test_size, 0, NULL, NULL },
     END_OF_TESTCASES
 };
 

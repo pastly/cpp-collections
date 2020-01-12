@@ -42,6 +42,8 @@ namespace Collections {
         bool contains(Iter, Iter);
         // Remove all contents from the Trie
         void clear(void);
+        // Get the number of items contained in the Trie
+        size_t size(void);
         // Public constructor. Used to create root node with no self.
         Trie();
     };

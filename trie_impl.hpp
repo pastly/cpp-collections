@@ -108,6 +108,15 @@ namespace Collections {
         //this->have_self = false;
     }
 
+    template <typename T>
+    size_t Trie<T>::size(void) {
+        auto size = this->have_self ? 1 : 0;
+        for (auto kv: this->children) {
+            size += kv.second.size();
+        }
+        return size;
+    }
+
     vector<string> tokenize(string s, char delim) {
         size_t start;
         size_t end = 0;
