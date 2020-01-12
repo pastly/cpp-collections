@@ -1,2 +1,3 @@
-trie
+test_trie
 .vscode
+*.o
