@@ -139,8 +139,8 @@ vector<string> tokenize(string s, char delim) {
     return out;
 }
 
+/*
 #include <unistd.h>
-
 int main(int argc, char *argv[]) {
     // Read file names from stdin, one per line, store them in the Trie, and then print them
     auto trie = Trie<string>();
@@ -156,3 +156,4 @@ int main(int argc, char *argv[]) {
     auto k2 = tokenize("./.git/reffs/tags", '/');
     std::cout << trie.contains(k2.begin(), k2.end()) << std::endl;
 }
+*/
