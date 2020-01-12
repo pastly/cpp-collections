@@ -2,6 +2,8 @@ language: cpp
 compiler: g++
 script:
     make test
+git:
+    submodules: true
 matrix:
     include:
         - os: linux
@@ -12,4 +14,4 @@ matrix:
                   packages:
                       - g++-8
           env:
-              - MATRIX_EVAL="cc=gcc-8 && CXX=g++-8"
+              - MATRIX_EVAL="CC=gcc-8 && CXX=g++-8"
