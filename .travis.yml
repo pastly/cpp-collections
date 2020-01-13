@@ -2,8 +2,6 @@ language: cpp
 compiler: g++
 script:
     make test
-git:
-    submodules: true
 matrix:
     include:
         - os: linux
