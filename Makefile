@@ -1,7 +1,6 @@
 INC := -I./ext/tinytest
 override CXXFLAGS := -g -std=c++17 -Werror $(INC) $(CXXFLAGS)
-# Force always use C++ compiler
-CC = $(CXX)
+CC := $(CXX)
 
 TT_OBJ := $(addprefix ext/tinytest/,tinytest.o)
 TRIE_OBJ := test_trie.o

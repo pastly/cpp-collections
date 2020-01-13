@@ -2,6 +2,7 @@ language: cpp
 compiler: g++
 script:
     make test
+dist: bionic
 matrix:
     include:
         - os: linux
@@ -12,4 +13,4 @@ matrix:
                   packages:
                       - g++-8
           env:
-              - MATRIX_EVAL="CC=gcc-8 && CXX=g++-8"
+              - MATRIX_EVAL="CC=g++-8 && CXX=g++-8"
